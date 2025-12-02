@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EM925 產品 AI 客服工作流簡報</title>
+    
+    <!-- Reveal.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.css">
+    <!-- Theme: League (Modern & Professional) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/theme/league.min.css">
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/monokai.min.css">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Custom Styles for Bilingual Layout */
+        .reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+            text-transform: none; /* Keep original capitalization */
+        }
+        .reveal .bilingual-text {
+            margin-bottom: 20px;
+        }
+        .reveal .zh-text {
+            font-size: 1.2em;
+            font-weight: bold;
+            display: block;
+            color: #eee;
+        }
+        .reveal .en-text {
+            font-size: 0.7em;
+            color: #aaa;
+            display: block;
+            font-style: italic;
+            margin-top: 5px;
+        }
+        .reveal ul li {
+            margin-bottom: 15px;
+        }
+        .reveal ul li .li-zh {
+            display: block;
+            font-weight: 600;
+        }
+        .reveal ul li .li-en {
+            display: block;
+            font-size: 0.75em;
+            color: #999;
+            margin-top: 2px;
+        }
+        
+        /* Node Card Style */
+        .node-card {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px 0;
+            border-left: 5px solid #00d4ff;
+            text-align: left;
+        }
+        .node-icon {
+            float: right;
+            font-size: 2em;
+            color: #00d4ff;
+            opacity: 0.5;
+        }
+        
+        /* Workflow Diagram Placeholder Style */
+        .diagram-box {
+            border: 2px dashed #666;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            background: rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+
+            <!-- Slide 1: Title -->
+            <section>
+                <div style="background: rgba(0,0,0,0.6); padding: 40px; border-radius: 15px; border: 1px solid #444;">
+                    <i class="fas fa-robot fa-4x" style="color: #00d4ff; margin-bottom: 20px;"></i>
+                    <h2 class="zh-text" style="color: #fff;">智慧電商客服自動化工作流解析</h2>
+                    <h4 class="en-text" style="color: #00d4ff;">Intelligent E-commerce Customer Service Workflow Analysis</h4>
+                    <hr style="width: 50%;">
+                    <h3 style="color: #aaa;">EM925 系列</h3>
+                </div>
+            </section>
+
+            <!-- Slide 2: Workflow Overview -->
+            <section>
+                <section>
+                    <h3><i class="fas fa-project-diagram"></i> 工作流總覽 <span style="font-size:0.6em; color:#888;">(Workflow Overview)</span></h3>
+                    
+                    <div class="diagram-box">
+                        <div style="display: flex; justify-content: space-around; align-items: center; font-size: 0.8em;">
+                            <div style="text-align:center;"><i class="fas fa-comment-dots fa-2x"></i><br>Trigger</div>
+                            <i class="fas fa-arrow-right"></i>
+                            <div style="text-align:center; color: #00d4ff;"><i class="fas fa-brain fa-2x"></i><br>AI Agent</div>
+                            <i class="fas fa-arrow-right"></i>
+                            <div style="text-align:center;"><i class="fas fa-tools fa-2x"></i><br>Tools</div>
+                        </div>
+                    </div>
+
+                    <ul style="margin-top: 30px; font-size: 0.85em;">
+                        <li class="fragment">
+                            <span class="li-zh">自動化商品諮詢</span>
+                            <span class="li-en">Automated Inquiry Handling: Provide real-time info for EM925.</span>
+                        </li>
+                        <li class="fragment">
+                            <span class="li-zh">人機協作審核 (Human-in-the-Loop)</span>
+                            <span class="li-en">Manual approval for discount requests via Gmail.</span>
+                        </li>
+                        <li class="fragment">
+                            <span class="li-zh">即時庫存查詢</span>
+                            <span class="li-en">Real-time Inventory Check via WooCommerce integration.</span>
+                        </li>
+                    </ul>
+                </section>
+                
+                <section>
+                    <h4>核心架構 (Core Architecture)</h4>
+                    <ol style="font-size: 0.9em;">
+                        <li><strong>觸發 (Trigger)</strong>: 接收使用者聊天訊息</li>
+                        <li><strong>決策 (Brain)</strong>: AI Agent 判斷意圖</li>
+                        <li><strong>工具 (Tools)</strong>: 資料庫查詢、郵件、對話控制</li>
+                        <li><strong>回應 (Response)</strong>: 輸出最終回覆</li>
+                    </ol>
+                </section>
+            </section>
+
+            <!-- Slide 3: The Brain (AI Agent) -->
+            <section>
+                <h3><i class="fas fa-brain"></i> 核心大腦與模型 <span style="font-size:0.6em; color:#888;">(The Brain & Model)</span></h3>
+                
+                <div class="node-card fragment">
+                    <i class="fas fa-network-wired node-icon"></i>
+                    <h5 style="margin:0; color:#00d4ff;">AI Agent (指揮中心)</h5>
+                    <p style="font-size: 0.7em; margin-top: 5px;">
+                        依據 System Prompt 決定呼叫哪個工具。<br>
+                        <span style="color:#aaa; font-style:italic;">Decides which tool to call based on the System Prompt.</span>
+                    </p>
+                </div>
+
+                <div class="r-stack">
+                    <div class="fragment fade-in-then-out" style="background: rgba(0,0,0,0.8); padding: 20px; border-radius: 10px;">
+                        <h5 style="color: #ffcc00;">決策邏輯 (Decision Logic)</h5>
+                        <ol style="font-size: 0.8em;">
+                            <li>快速回覆 (Respond and Go)</li>
+                            <li>釐清需求 (Respond and Wait)</li>
+                            <li>查詢資料 (Get Data)</li>
+                            <li>人工確認 (Human Confirmation)</li>
+                        </ol>
+                    </div>
+
+                    <div class="fragment fade-in-then-out" style="background: rgba(0,0,0,0.8); padding: 20px; border-radius: 10px;">
+                        <h5 style="color: #ffcc00;">OpenAI Chat Model</h5>
+                        <ul style="font-size: 0.8em;">
+                            <li><span class="li-zh">模型: GPT-5-mini</span></li>
+                            <li><span class="li-zh">作用: 理解自然語言，生成人性化回應</span><br><span class="li-en">Understands natural language.</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="fragment fade-in" style="background: rgba(0,0,0,0.8); padding: 20px; border-radius: 10px;">
+                        <h5 style="color: #ffcc00;">Simple Memory</h5>
+                        <ul style="font-size: 0.8em;">
+                            <li><span class="li-zh">功能: 保存對話上下文</span><br><span class="li-en">Retains conversation context.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 4: E-commerce Integration -->
+            <section>
+                <h3><i class="fas fa-shopping-cart"></i> 電商資料整合 <span style="font-size:0.6em; color:#888;">(WooCommerce)</span></h3>
+                
+                <div class="node-card">
+                    <i class="fas fa-database node-icon"></i>
+                    <h5 style="margin:0; color:#00d4ff;">Get many products in WooCommerce</h5>
+                    <div style="font-size: 0.7em; margin-top: 15px;">
+                        <p><strong>用途 (Purpose):</strong><br>
+                        當使用者詢問具體商品時呼叫此工具。<br>
+                        <span style="color:#aaa;">AI calls this tool for specific product queries.</span></p>
+                        
+                        <p><strong>過濾條件 (Filters):</strong><br>
+                        支援動態參數過濾 (如: 最低價格 minPrice)。</p>
+                        
+                        <p><strong>回傳資料 (Output):</strong><br>
+                        <i class="fas fa-check-circle" style="color:lightgreen;"></i> 商品名稱 Name<br>
+                        <i class="fas fa-check-circle" style="color:lightgreen;"></i> 庫存狀態 Stock<br>
+                        <i class="fas fa-check-circle" style="color:lightgreen;"></i> 價格 Price</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 5: Human-in-the-Loop -->
+            <section>
+                <h3><i class="fas fa-user-shield"></i> 人機協作與權限 <span style="font-size:0.6em; color:#888;">(Human-in-the-Loop)</span></h3>
+                
+                <div class="node-card">
+                    <i class="fas fa-envelope node-icon"></i>
+                    <h5 style="margin:0; color:#e74c3c;">Human Confirmation (Gmail Tool)</h5>
+                    <p style="font-size: 0.8em; margin-top: 5px; color: #ffadad;">關鍵機制: 折扣審核 (Discount Approval)</p>
+                </div>
+
+                <div style="font-size: 0.8em; text-align: left; margin-left: 10%;">
+                    <p><i class="fas fa-1"></i> 使用者要求折扣 (User asks for discount)</p>
+                    <p class="fragment"><i class="fas fa-arrow-down"></i> <span style="color: #e74c3c;">AI 無權限決定</span> (AI triggers tool)</p>
+                    <p class="fragment"><i class="fas fa-arrow-down"></i> 發送郵件給經理 (Email Manager)</p>
+                    <p class="fragment" style="background: rgba(231, 76, 60, 0.3); padding: 5px; border-radius: 5px;">
+                        <i class="fas fa-pause-circle"></i> <strong>等待 (Wait)</strong>: 工作流暫停，直到經理回覆。
+                    </p>
+                </div>
+            </section>
+
+            <!-- Slide 6: Flow Control -->
+            <section>
+                <h3><i class="fas fa-traffic-light"></i> 對話流暢度控制 <span style="font-size:0.6em; color:#888;">(Flow Control)</span></h3>
+                
+                <div style="display: flex; gap: 20px;">
+                    <div class="node-card" style="flex: 1; border-left-color: #2ecc71;">
+                        <h6 style="color: #2ecc71;">Respond to Go</h6>
+                        <p style="font-size: 0.6em;">發送「過場訊息」但不中斷流程。<br>Sends status update, continues workflow.</p>
+                        <hr style="border-color: #555;">
+                        <p style="font-size: 0.6em; font-style: italic;">"好的，我正在幫您查詢，請稍候！"</p>
+                    </div>
+                    
+                    <div class="node-card" style="flex: 1; border-left-color: #f1c40f;">
+                        <h6 style="color: #f1c40f;">Respond to Wait</h6>
+                        <p style="font-size: 0.6em;">發送問題並<strong>暫停</strong>，等待輸入。<br>Sends question and pauses.</p>
+                        <hr style="border-color: #555;">
+                        <p style="font-size: 0.6em; font-style: italic;">"請問您需要什麼尺寸？"</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Slide 7: Summary -->
+            <section>
+                <h3><i class="fas fa-star"></i> 總結 (Summary)</h3>
+                
+                <div style="text-align: left; margin-top: 40px;">
+                    <div class="fragment fade-up">
+                        <h5 style="color: #00d4ff;"><i class="fas fa-lightbulb"></i> 智慧化 (Intelligent)</h5>
+                        <p style="font-size: 0.7em;">不只是關鍵字回覆，而是理解語意的 AI 代理。</p>
+                    </div>
+                    
+                    <div class="fragment fade-up">
+                        <h5 style="color: #2ecc71;"><i class="fas fa-sync-alt"></i> 即時性 (Real-time)</h5>
+                        <p style="font-size: 0.7em;">直接串接 WooCommerce 獲取最新資訊。</p>
+                    </div>
+                    
+                    <div class="fragment fade-up">
+                        <h5 style="color: #e74c3c;"><i class="fas fa-shield-alt"></i> 安全性 (Secure)</h5>
+                        <p style="font-size: 0.7em;">敏感操作（如折扣）透過 Gmail 進行人工把關。</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 50px; font-size: 0.6em; color: #888;">
+                    End of Presentation
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Reveal.js Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.5.0/plugin/highlight/highlight.min.js"></script>
+    
+    <script>
+        // Initialize Reveal
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: true,
+            hash: false, // Changed to false to prevent SecurityError
+            history: false, // Explicitly disable history to prevent URL manipulation errors
+            transition: 'slide', // none/fade/slide/convex/concave/zoom
+            plugins: [ RevealHighlight ]
+        });
+    </script>
+</body>
+</html>
